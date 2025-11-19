@@ -6,7 +6,7 @@ stats = {
     'stories_created': 0,
     'achievements': [],
     'genres_played': set(),
-    'total_story_score': 0.0  # Додаємо float
+    'total_story_score': 0.0
 }
 
 
@@ -17,7 +17,7 @@ achievements_list = {
     'all_genres': 'Всі жанри',
     'speed_demon': 'Швидкий автор',
     'story_master': 'Майстер історій',
-    'high_scorer': 'Високий бал'  # Нове досягнення для float
+    'high_scorer': 'Високий бал'
 }
 
 
@@ -43,7 +43,7 @@ genre_templates = {
     'adventure': [
         """
 {0} був(ла) в настрої {1}, коли вирушив(ла) {2}. По дорозі зустрів(ла) {3}. Раптом {4}.
-Герой {5} і промовив(la): "{6}". Після цього {7}, і все змінилося: {8}.
+Герой {5} і промовив(лa): "{6}". Після цього {7}, і все змінилося: {8}.
 Ця пригода навчила {0}, що {9}.
         """,
 
@@ -94,7 +94,7 @@ genre_templates = {
         """,
 
         """
-{0} був(la) в натсрої {1}, коли пішов(ла) {2}. Дорогою зустрів(ла) {3}. Несподівано {4}.
+{0} був(лa) в натсрої {1}, коли пішов(ла) {2}. Дорогою зустрів(ла) {3}. Несподівано {4}.
 {0} {5} і сказав(ла): "{6}". Потім {7}, що змінило почуття: {8}.
 Цей роман навчив {0}, що {9}.
         """
@@ -109,7 +109,7 @@ genre_templates = {
         """,
 
         """
-{0} почувався(лась) в настрої {1}, коли пішов(ла) {2}. Шляхом зустрів(la) {3}. Раптом {4}.
+{0} почувався(лась) в настрої {1}, коли пішов(ла) {2}. Шляхом зустрів(лa) {3}. Раптом {4}.
 {0} {5} і промовив(ла): "{6}". Далі {7}, трансформуючи реальність: {8}.
 Ця наукова фантастика навчила {0}, що {9}.
         """
@@ -164,26 +164,26 @@ genre_templates = {
 
 def calculate_story_score(answers):
     """Розраховує бал історії (використовує float)"""
-    base_score = 10.0  # float
-    length_bonus = len(''.join(answers)) * 0.1  # float операції
-    creativity_bonus = sum(len(word) for word in answers if len(word) > 5) * 0.05  # float
+    base_score = 10.0
+    length_bonus = len(''.join(answers)) * 0.1
+    creativity_bonus = sum(len(word) for word in answers if len(word) > 5) * 0.05
     total_score = base_score + length_bonus + creativity_bonus
-    return round(total_score, 2)  # повертаємо float
+    return round(total_score, 2)
 
 
 def show_progress():
     """Показує прогрес (використовує range)"""
     print("\n📊 ВАШ ПРОГРЕС:")
 
-    # Використання range для відображення рівнів
-    for level in range(1, 11):  # range
+
+    for level in range(1, 11):
         if stats['stories_created'] >= level:
             print(f"   Рівень {level}: ✅")
         else:
             print(f"   Рівень {level}: 🔒")
 
-    # Використання range для шкали прогресy
-    progress_range = range(0, 101, 10)  # range з кроком
+
+    progress_range = range(0, 101, 10)
     current_progress = min(stats['stories_created'] * 10, 100)
 
     print(f"\nЗагальний прогрес: {current_progress}%")
@@ -201,7 +201,7 @@ def check_achievements():
     """Перевіряє досягнення"""
     count = stats['stories_created']
     genres_count = len(stats['genres_played'])
-    avg_score = stats['total_story_score'] / max(1, count)  # float операція
+    avg_score = stats['total_story_score'] / max(1, count)
 
     achievements_to_check = [
         ('first', count >= 1),
@@ -210,7 +210,7 @@ def check_achievements():
         ('all_genres', genres_count >= 5),
         ('speed_demon', count >= 3),
         ('story_master', count >= 8),
-        ('high_scorer', avg_score >= 15.0)  # float порівняння
+        ('high_scorer', avg_score >= 15.0)
     ]
 
     for achievement_id, condition in achievements_to_check:
@@ -232,10 +232,10 @@ def show_stats():
     print(f"   Жанрів спробовано: {len(stats['genres_played'])}")
 
     if stats['stories_created'] > 0:
-        avg_score = stats['total_story_score'] / stats['stories_created']  # float ділення
-        print(f"   Середній бал історій: {avg_score:.2f}")  # float форматування
+        avg_score = stats['total_story_score'] / stats['stories_created']
+        print(f"   Середній бал історій: {avg_score:.2f}")
 
-    show_progress()  # використання range
+    show_progress()
 
 
 def show_achievements():
@@ -382,8 +382,8 @@ def ask_questions():
     print("\n📝 ВІДПОВІДАЙТЕ НА ПИТАННЯ:")
     print("=" * 50)
 
-    # Використання range для відображення прогресу
-    question_range = range(1, 11)  # range
+
+    question_range = range(1, 11)
 
     for i in question_range:
         print(f"\n[{i}/10] {questions[i-1]}")
@@ -428,9 +428,9 @@ def main_game():
         print("\n📚 ВАША УНІКАЛЬНА ІСТОРІЯ:")
         print(story)
 
-        # Розрахунок та відображення балу (float)
+
         story_score = calculate_story_score(answers)
-        stats['total_story_score'] += story_score  # float додавання
+        stats['total_story_score'] += story_score
 
         print(f"\n⭐ БАЛ ІСТОРІЇ: {story_score}/20.0")
 
